@@ -1,5 +1,7 @@
 # Intro 
-This project manages a sandbox for [security-onion](url)
+This project manages a sandbox for [security-onion](https://code.google.com/p/security-onion/), 
+
+A [custom](https://github.com/narkisr/packer-security-onion) custom packer sandbox is used.
 
 # Usage
 ```bash
@@ -9,7 +11,7 @@ This project manages a sandbox for [security-onion](url)
 
 # Copyright and license
 
-Copyright [2014] [First Last Name]
+Copyright [2014] [Narkis Ronen]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
