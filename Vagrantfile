@@ -18,10 +18,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = 'security-onion-12.04.4_puppet-3.6.1' 
   config.vm.network :public_network, :bridge => bridge
   config.vm.hostname = 'security-onion.local'
-
-  config.vm.provider :virtualbox do |v, override|
-    
-  end
+  config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
+  config.vm.network :forwarded_port, guest: 22, host: 22022, auto_correct: true
+  config.ssh.port = 22022
 
   config.vm.provision :shell, :inline => update
 
@@ -35,6 +34,7 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
     vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    # vm.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
   end
 
   config.vm.provision :puppet do |puppet|
