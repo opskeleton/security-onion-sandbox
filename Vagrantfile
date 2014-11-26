@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   env  = ENV['PUPPET_ENV']
   env ||= 'dev'
 
-  config.vm.box = 'security-onion-12.04.4_puppet-3.6.1' 
+  config.vm.box = 'security-onion-12.04.4_puppet-3.7.3' 
   config.vm.network :public_network, :bridge => bridge
   config.vm.hostname = 'security-onion.local'
   config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
