@@ -18,12 +18,13 @@ Vagrant.configure('2') do |config|
   env ||= 'dev'
 
   config.vm.box = 'security-onion-12.04.4_puppet-3.7.3' 
-  # config.vm.network :public_network, :bridge => mirror
   config.vm.network :public_network, :bridge => bridge
   config.vm.hostname = 'security-onion.local'
   config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
   config.vm.network :forwarded_port, guest: 22, host: 22021, auto_correct: true
   config.ssh.port = 22021
+  config.vm.network :forwarded_port, guest: 80, host: 8085
+  config.vm.network :forwarded_port, guest: 444, host: 8444
 
   config.vm.provision :shell, :inline => update
 
