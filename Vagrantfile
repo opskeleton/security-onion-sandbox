@@ -11,20 +11,17 @@ SCRIPT
 Vagrant.configure('2') do |config|
 
   bridge = ENV['VAGRANT_BRIDGE']
-  bridge = ENV['VAGRANT_MIRROR']
   bridge ||= 'eth0'
+  mirror = ENV['VAGRANT_MIRROR']
   mirror ||= 'eth1'
   env  = ENV['PUPPET_ENV']
   env ||= 'dev'
 
   config.vm.box = 'security-onion-12.04.4_puppet-3.7.3' 
-  config.vm.network :public_network, :bridge => bridge
   config.vm.hostname = 'security-onion.local'
-  config.vm.network :forwarded_port, guest: 22, host: 2222, id: "ssh", disabled: true
-  config.vm.network :forwarded_port, guest: 22, host: 22021, auto_correct: true
-  config.ssh.port = 22021
   config.vm.network :forwarded_port, guest: 80, host: 8085
   config.vm.network :forwarded_port, guest: 444, host: 8444
+  config.ssh.insert_key = false
 
   config.vm.provision :shell, :inline => update
 
@@ -41,6 +38,7 @@ Vagrant.configure('2') do |config|
     vb.customize ['modifyvm', :id, '--nic3', 'bridged']
     vb.customize ['modifyvm', :id, '--bridgeadapter3', mirror]
     vb.customize ['modifyvm', :id, '--nicpromisc3', 'allow-all']
+    vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
   end
 
   config.vm.provision :puppet do |puppet|
