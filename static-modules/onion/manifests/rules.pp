@@ -10,5 +10,15 @@ class onion::rules(
     content => template('onion/disablesid.conf.erb'),
     owner   => root,
     group   => root,
+  } ~>
+
+  exec{'update snort rules':
+    command      => '/usr/bin/rule-update',
+    refreshonly => true,
+    user         => 'root',
+    path         => ['/usr/bin','/bin',],
+    onlyif       => 'test -f /var/sosetup-skip.run'
   }
+
+
 }
