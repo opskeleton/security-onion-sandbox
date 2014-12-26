@@ -2,7 +2,11 @@
 class onion::rules(
   $disabled=['dropbox_usage']
 ) {
-  $ids = {'dropbox_usage' => '2012647'}
+  $ids = {
+    'dropbox_usage'     => '2012647',
+    'dropbox_broadcast' => '2012648',
+    'apt_outbound'      => '2013504'
+  }
 
   file { '/etc/nsm/pulledpork/disablesid.conf':
     ensure  => file,
@@ -13,11 +17,11 @@ class onion::rules(
   } ~>
 
   exec{'update snort rules':
-    command      => '/usr/bin/rule-update',
+    command     => '/usr/bin/rule-update',
     refreshonly => true,
-    user         => 'root',
-    path         => ['/usr/bin','/bin',],
-    onlyif       => 'test -f /var/sosetup-skip.run'
+    user        => 'root',
+    path        => ['/usr/bin','/bin',],
+    onlyif      => 'test -f /var/sosetup-skip.run'
   }
 
 

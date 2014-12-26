@@ -1,4 +1,9 @@
 ---
+onion::rules::disabled: 
+  - dropbox_usage
+  - dropbox_broadcast
+  - apt_outbound
+
 onion::setup::user: ronen
 onion::setup::password: foobar
 onion::setup::email: narkisr@gmail.com
