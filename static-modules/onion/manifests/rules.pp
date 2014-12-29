@@ -20,9 +20,6 @@ class onion::rules(
     command     => '/usr/bin/rule-update',
     refreshonly => true,
     user        => 'root',
-    path        => ['/usr/bin','/bin',],
-    onlyif      => 'test -f /var/sosetup-skip.run'
+    path        => ['/usr/bin','/bin'],
   }
-
-
 }
