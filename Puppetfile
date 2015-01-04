@@ -6,3 +6,6 @@ mod 'puppetlabs/apt'
 
 mod 'mstrauss/editfile', 
    :git => 'git://github.com/mstrauss/puppet-editfile.git'
+
+mod 'strings/mkfs', 
+  :git => 'git://github.com/pulling-strings/puppet-mkfs.git'

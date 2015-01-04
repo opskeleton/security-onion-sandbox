@@ -3,7 +3,7 @@ FORGE
   specs:
     puppetlabs-apt (1.7.0)
       puppetlabs-stdlib (>= 2.2.1)
-    puppetlabs-stdlib (4.4.0)
+    puppetlabs-stdlib (4.5.0)
 
 GIT
   remote: git://github.com/mstrauss/puppet-editfile.git
@@ -12,8 +12,16 @@ GIT
   specs:
     mstrauss-editfile (0.0.1)
 
+GIT
+  remote: git://github.com/pulling-strings/puppet-mkfs.git
+  ref: master
+  sha: 77658ed437b8b949aa138c735998ef46f3bb1d32
+  specs:
+    strings-mkfs (0.1.0)
+
 DEPENDENCIES
   mstrauss-editfile (>= 0)
   puppetlabs-apt (>= 0)
   puppetlabs-stdlib (>= 0)
+  strings-mkfs (>= 0)
 

@@ -8,6 +8,14 @@ fi
 SCRIPT
 
 
+def create_disk(count, vb, size = 500 * 1024)
+  bd = "./so_disk_#{i}.vdi"
+  unless(File.exists?(bd))
+    vb.customize ['createhd', '--filename', bd, '--size', size]
+    vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', count, '--device', 0, '--type', 'hdd', '--medium', bd]
+  end
+end
+
 Vagrant.configure('2') do |config|
 
   bridge = ENV['VAGRANT_BRIDGE']
@@ -27,7 +35,7 @@ Vagrant.configure('2') do |config|
 
   config.vm.provider :virtualbox do |vb|
     vb.gui = true
-    vb.customize ['modifyvm', :id, '--memory', 2048, '--cpus', 2]
+    vb.customize ['modifyvm', :id, '--memory', 4096, '--cpus', 4]
     vb.customize ['modifyvm', :id, '--vram', '256']
     vb.customize ['setextradata', 'global', 'GUI/MaxGuestResolution', 'any']
     vb.customize ['setextradata', :id, 'CustomVideoMode1', '1024x768x32']
@@ -39,6 +47,7 @@ Vagrant.configure('2') do |config|
     vb.customize ['modifyvm', :id, '--bridgeadapter3', mirror]
     vb.customize ['modifyvm', :id, '--nicpromisc3', 'allow-all']
     vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
+    create_disk(1, vb )
   end
 
   config.vm.provision :puppet do |puppet|
