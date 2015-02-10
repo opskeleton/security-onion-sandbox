@@ -9,10 +9,10 @@ SCRIPT
 
 
 def create_disk(count, vb, size = 500 * 1024)
-  bd = "./so_disk_#{i}.vdi"
+  bd = "so_disk.vdi"
   unless(File.exists?(bd))
     vb.customize ['createhd', '--filename', bd, '--size', size]
-    vb.customize ['storageattach', :id, '--storagectl', 'SATA Controller', '--port', count, '--device', 0, '--type', 'hdd', '--medium', bd]
+    vb.customize ['storageattach', :id, '--storagectl', 'IDE Controller', '--port', count, '--device', 0, '--type', 'hdd', '--medium', bd]
   end
 end
 
