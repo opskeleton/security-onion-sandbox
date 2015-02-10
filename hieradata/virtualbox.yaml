@@ -3,6 +3,7 @@ onion::rules::disabled:
   - dropbox_usage
   - dropbox_broadcast
   - apt_outbound
+  - torrent_peer
 
 onion::setup::user: ronen
 onion::setup::password: foobar
