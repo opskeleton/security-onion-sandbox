@@ -4,3 +4,4 @@ modules
 .tmp
 pkg
 so_disk.vdi
+hieradata/oink.yaml
