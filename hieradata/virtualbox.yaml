@@ -4,6 +4,11 @@ onion::rules::disabled:
   - dropbox_broadcast
   - apt_outbound
   - torrent_peer
+  - tor_ssl
+  - http_non_rfc_char
+  - stream5_reset
+  - http_no_length
+  - http_unkown_method
 
 onion::setup::user: ronen
 onion::setup::password: foobar
