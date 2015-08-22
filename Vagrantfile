@@ -18,16 +18,13 @@ end
 
 Vagrant.configure('2') do |config|
 
-  bridge = ENV['VAGRANT_BRIDGE']
-  bridge ||= 'eth0'
-  mirror = ENV['VAGRANT_MIRROR']
-  mirror ||= 'eth1'
-  env  = ENV['PUPPET_ENV']
-  env ||= 'dev'
+  bridge = ENV['VAGRANT_BRIDGE'] || 'eth0'
+  mirror = ENV['VAGRANT_MIRROR'] || 'eth1'
+  env  = ENV['PUPPET_ENV'] || 'dev'
 
-  config.vm.box = 'security-onion-12.04.4_puppet-3.7.3' 
+  config.vm.box = 'security-onion-12.04.4_puppet_3.8.2' 
   config.vm.hostname = 'security-onion.local'
-  config.vm.network :forwarded_port, guest: 80, host: 8085
+  config.vm.network :forwarded_port, guest: 443, host: 8443
   config.vm.network :forwarded_port, guest: 444, host: 8444
   config.ssh.insert_key = false
 
@@ -54,7 +51,6 @@ Vagrant.configure('2') do |config|
     puppet.manifests_path = 'manifests'
     puppet.manifest_file  = 'default.pp'
     puppet.options = '--modulepath=/vagrant/modules:/vagrant/static-modules --hiera_config /vagrant/hiera_vagrant.yaml --environment=#{env}'
-
   end
-
+  
 end
