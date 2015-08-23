@@ -8,11 +8,11 @@ class onion::setup(
 ) {
 
   file { '/tmp/sosetup.conf':
-    ensure=> file,
-    mode  => '0644',
+    ensure  => file,
+    mode    => '0644',
     content => template('onion/sosetup.conf.erb'),
-    owner => root,
-    group => root,
+    owner   => root,
+    group   => root,
   } ->
 
   exec{'so global setup run':
