@@ -5,6 +5,7 @@ onion::rules::disabled:
   - apt_outbound
   - torrent_peer
   - tor_ssl
+  - sur_stream_est
 onion::setup::user: ronen
 onion::setup::password: foobar
 onion::setup::email: narkisr@gmail.com

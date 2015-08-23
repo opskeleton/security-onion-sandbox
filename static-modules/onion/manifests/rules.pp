@@ -9,6 +9,7 @@ class onion::rules(
     'apt_outbound'       => '2013504',
     'torrent_peer'       => '2000334',
     'tor_ssl'            => '2018789',
+    'sur_stream_est'     => '2210021',
     'http_non_rfc_char'  => '14',
     'stream5_reset'      => '15',
     'http_no_length'     => '3',
